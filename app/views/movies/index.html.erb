@@ -1,0 +1,35 @@
+<% if !user_signed_in? %>
+<div class="container">
+  <div class="jumbotron">
+    
+    <p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+    <%= search_form_for @search do |f| %>
+    <div class="field">
+      <h4><%= f.label :title_cont, "Search a Movie" %>
+      <%= f.text_field :title_cont %>
+      <%= f.submit "Search", class: "btn btn-danger btn-md"  %></h4>
+    </div><% end %>
+  </div>
+</div>
+<% else %>
+<%= search_form_for @search do |f| %>
+<div class="container">
+<div class="field">
+  <h4><%= f.label :title_cont, "Search a Movie" %>
+  <%= f.text_field :title_cont %>
+  <%= f.submit "Search", class: "btn btn-danger btn-md"  %></h4>
+</div></div><% end %>
+<% end %>
+
+<div class="container">
+
+<div class="row">
+  <% @movies.each do |movie| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <%= link_to (image_tag movie.image.url(:medium), class: 'image'), movie %>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
