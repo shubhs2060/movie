@@ -16,19 +16,33 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li><%= render "layouts/chat" %></li>
+
         <% if user_signed_in? %>
         <% if is_admin? %>
+          <li><%= link_to "Top Rated Movies", top_path, class: "active" %></li>
           <li><%= link_to "New Movie", new_movie_path, class: "active" %></li>
           <li><%= link_to "Admin Panel", '/admin' , class: "active" %></li>
 <% end %>
+  <%= link_to (image_tag current_user.image,:class=>'img-circle',:type => "fetch", :width => 50, :height => 40, :crop => :fill), edit_user_registration_path %>
           <li><%= link_to "Account", edit_user_registration_path %></li>
           <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
         <% else %>
+          <li><%= link_to "Top Rated Movies", top_path, class: "active" %></li>
           <li><%= link_to "Sign Up", new_user_registration_path, class: "active" %></li>
           <li><%= link_to "Log In", new_user_session_path, class: "active" %></li>
-          <li><%= link_to "Log in with Google", user_omniauth_upgrade_path( :google_oauth2 ) %></li>
-<li><%= render "layouts/chat" %></li>
+          <li><%= link_to "Subscribe Us", new_newsletter_path, class: "active" %></li>
+          <li><%= link_to user_omniauth_upgrade_path( :google_oauth2 ) do %>
+            <%= image_tag "logo.png", class: "logo"%>
+            <% end %>
+          </li>
+          <li><%= link_to games_path do %>
+             <%= image_tag "games.png", class: "loogo" %>
+          <% end %>
+        </li>
+
         <% end %>
+
       </ul>
 
     </div><!-- /.navbar-collapse -->

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422044849) do
+ActiveRecord::Schema.define(version: 20160517071418) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "categories_movies", id: false, force: :cascade do |t|
+    t.integer "category_id", limit: 4, null: false
+    t.integer "movie_id",    limit: 4, null: false
+  end
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
@@ -46,6 +57,12 @@ ActiveRecord::Schema.define(version: 20160422044849) do
     t.datetime "image_updated_at"
   end
 
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "email",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating",     limit: 4
     t.text     "comment",    limit: 65535
@@ -69,10 +86,30 @@ ActiveRecord::Schema.define(version: 20160422044849) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.boolean  "admin"
+    t.string   "image_file_name",        limit: 255
+    t.string   "image_content_type",     limit: 255
+    t.integer  "image_file_size",        limit: 4
+    t.datetime "image_updated_at"
+    t.string   "country",                limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "link",         limit: 255
+    t.string   "title",        limit: 255
+    t.datetime "published_at"
+    t.integer  "likes",        limit: 4
+    t.integer  "dislikes",     limit: 4
+    t.string   "uid",          limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "movie_id",     limit: 4
+    t.integer  "user_id",      limit: 4
+  end
+
+  add_index "videos", ["uid"], name: "index_videos_on_uid", using: :btree
 
   add_foreign_key "identities", "users"
 end

@@ -1,14 +1,72 @@
 <% if !user_signed_in? %>
 <div class="container">
-  <div class="jumbotron">
-    
-    <p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
-    <%= search_form_for @search do |f| %>
-    <div class="field">
-      <h4><%= f.label :title_cont, "Search a Movie" %>
-      <%= f.text_field :title_cont %>
-      <%= f.submit "Search", class: "btn btn-danger btn-md"  %></h4>
-    </div><% end %>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active">
+            <img src="bt.gif" style="width:1000px;height:400px;">
+            <div class="carousel-caption">
+              <%= search_form_for @search do |f| %>
+              <div class="field">
+                <h4><%= f.label :title_cont, "Search a Movie" %>
+                <%= f.text_field :title_cont %>
+                <%= f.submit "Search", class: "btn btn-danger btn-md"  %></h4>
+              </div>
+              <%= f.label "Categories of Movies" %>
+              <%= f.collection_check_boxes :categories_id_in_any, Category.all, :id, :name do |b| %>
+              <div class="collection-check-box">
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="item">
+            <img src="br.gif" style="width:1000px;height:400px;">
+            <div class="carousel-caption">
+              <p><%= link_to "Log In To Write A Review", new_user_session_path, class: "btn btn-danger btn-lg" %></p>
+
+            </div>
+          </div>
+
+          <div class="item">
+            <img src="im.gif" style="width:1000px;height:400px;">
+            <div class="carousel-caption">
+              <h3>Latest Movies</h3>
+              <p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+            </div>
+          </div>
+
+          <div class="item">
+            <img src="bm.gif" style="width:1000px;height:400px;">
+            <div class="carousel-caption">
+              <h3>Latest Animes</h3>
+              <p><%= link_to "View the Top Rated Animes", top_path, class: "btn btn-danger btn-lg" %></p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
   </div>
 </div>
 <% else %>
@@ -20,16 +78,18 @@
   <%= f.submit "Search", class: "btn btn-danger btn-md"  %></h4>
 </div></div><% end %>
 <% end %>
-
+<br>
 <div class="container">
 
 <div class="row">
   <% @movies.each do |movie| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <%= link_to (image_tag movie.image.url(:medium), class: 'image'), movie %>
+        <%= link_to movie.title, movie, class: 'title' %>
+        <%= link_to (image_tag movie.image.url(:medium), class: 'title'), movie %>
       </div>
     </div>
   <% end %>
 </div>
+
 </div>

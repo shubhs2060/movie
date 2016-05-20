@@ -4,8 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
+  has_attached_file :image,:default_url => '5250.png'
+  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
   has_many :movies
   has_many :reviews, dependent: :destroy
+    has_many :videos, dependent: :destroy
+
   has_many :identities
 
  def twitter

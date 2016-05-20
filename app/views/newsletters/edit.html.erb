@@ -1,0 +1,7 @@
+<h1>Editing Newsletter</h1>
+
+<%= render 'form' %>
+<p>Unhappy? <%= button_to "Cancel my account", newsletter_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to 'Show', @newsletter %> |
+<%= link_to 'Back', newsletters_path %>

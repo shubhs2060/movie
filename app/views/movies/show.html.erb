@@ -24,8 +24,12 @@
                 <td><%= @movie.director %></td>
               </tr>
               <tr>
-                <td><strong>Rating:</strong></td>
+                <td><strong>Censor Rating:</strong></td>
                 <td><%= @movie.rating %></td>
+              </tr>
+              <tr>
+                <td><strong>Categories:</strong></td>
+                <td><%= @movie.categories.map(&:name).sort.join(", ") %></td>
               </tr>
             </tbody>
           </table>
@@ -34,14 +38,76 @@
       <div class="col-md-7 col-md-offset-1">
             <h1 class="review_title"><%= @movie.title %></h1>
             <h2>No. of Reviews(<%= @movie.reviews.count() %>)</h2><br>
-
+<%= render_shareable :buttons=> ['twitter', 'facebook', 'tumblr','pinterest'] %>
+            <h4  <div class="star-rating" data-score= <%= @avg_review %> >Total Score: </h4>
+            <% if @reviews.blank? %>
+          <% if @videos.any? %>
+    <h3>Trailers</h3>
+    <div id="player-wrapper"></div>
+    <% @videos.in_groups_of(2) do |group| %>
+      <div class="row">
+        <% group.each do |video| %>
+          <% if video %>
+            <div class="col-md-6">
+              <div class="yt_video thumbnail">
+                <%= link_to image_tag("https://img.youtube.com/vi/#{video.uid}/mqdefault.jpg", alt: video.title,
+                                      class: 'img-rounded'),
+                            "https://www.youtube.com/watch?v=#{video.uid}", target: '_blank' %>
+                <div class="caption">
+                  <h5><%= video.title %></h5>
+                  <p>Published at <%= video.published_at.strftime('%-d %B %Y %H:%M:%S') %></p>
+                  <p>
+                    <span class="glyphicon glyphicon glyphicon-thumbs-up"></span> <%= video.likes %>
+                    <span class="glyphicon glyphicon glyphicon-thumbs-down"></span> <%= video.dislikes %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+<% end %>
+            <h4>Description: <%= @movie.description %></h4>
+<h3>No reviews just yet, would you like to add the first!</h3>
+              <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
+                 <% if is_admin? %>
+              <%= link_to "Add a Video", new_movie_video_path(@movie), class: "btn btn-primary" %>
+          <% end %>
+            <% else %>
+            <% if @videos.any? %>
+    <h3>Trailers</h3>
+    <div id="player-wrapper"></div>
+    <% @videos.in_groups_of(2) do |group| %>
+      <div class="row">
+        <% group.each do |video| %>
+          <% if video %>
+            <div class="col-md-6">
+              <div class="yt_video thumbnail">
+                <%= link_to image_tag("https://img.youtube.com/vi/#{video.uid}/mqdefault.jpg", alt: video.title,
+                                      class: 'img-rounded'),
+                            "https://www.youtube.com/watch?v=#{video.uid}", target: '_blank' %>
+                <div class="caption">
+                  <h5><%= video.title %></h5>
+                  <p>Published at <%= video.published_at.strftime('%-d %B %Y %H:%M:%S') %></p>
+                  <p>
+                    <span class="glyphicon glyphicon glyphicon-thumbs-up"></span> <%= video.likes %>
+                    <span class="glyphicon glyphicon glyphicon-thumbs-down"></span> <%= video.dislikes %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+<% end %>
             <h4>Description: <%= @movie.description %></h4>
 
-            <% if @reviews.blank? %>
-              <h3>No reviews just yet, would you like to add the first!</h3>
-              <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
-            <% else %>
-            <%= link_to "Write a Review", new_movie_review_path(@movie) %>
+            <%= link_to "Write a Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
+                    <% if is_admin? %>
+            <%= link_to "Add a Video", new_movie_video_path(@movie), class: "btn btn-primary" %>
+<% end %>
               <% @reviews.each do |review| %>
                 <div class="reviews">
                   <div class="star-rating" data-score= <%= review.rating %> ></div>

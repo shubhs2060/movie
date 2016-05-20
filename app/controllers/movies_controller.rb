@@ -1,16 +1,19 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :top_movies, :games]
 
   before_action :is_admin?, only: [:new, :edit, :update, :destroy]
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
   def index
     @search = Movie.search(params[:q])
-    @movies = @search.result.order("created_at DESC")
+    @movies = @search.result(distinct: true).order("created_at DESC")
+
   end
 
 
   def show
     @reviews = Review.where(movie_id: @movie.id).order("created_at DESC")
+    @videos = Video.where(movie_id: @movie.id).order("created_at DESC")
+
     if @reviews.blank?
           @avg_review = 0
         else
@@ -25,12 +28,21 @@ class MoviesController < ApplicationController
   def edit
   end
 
+  def games
+  end
+
+def top_movies
+  @movies = Movie.joins(:reviews).group("movies.id").order("count(movies.id) DESC")
+end
+
 
   def create
     @movie = current_user.movies.build(movie_params)
+    @newsletters = Newsletter.all
 
     respond_to do |format|
       if @movie.save
+        UserMailer.subscription_confirmation(@newsletters,@movie).deliver_now
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
         format.json { render :show, status: :created, location: @movie }
       else
@@ -70,7 +82,7 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :movie_length, :director, :rating, :image)
+      params.require(:movie).permit(:title, :description, :movie_length, :director, :rating, :image,category_ids:[])
     end
 
     def is_admin?

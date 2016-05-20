@@ -6,25 +6,32 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
+    <%= f.email_field :email, autofocus: true, class: "form-control"  %>
+  </div><br>
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.country_select :country, class: "form-control" %>
+  </div><br>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image, class: "form-control"  %>
+  </div><br>
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control"  %>
+  </div><br>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <%= f.password_field :password_confirmation, autocomplete: "off" , class: "form-control" %>
+  </div><br>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <%= f.submit "Sign up", class: "btn btn-danger"  %>
+  </div><br />
 <% end %>
 
 <%= render "devise/shared/links" %>

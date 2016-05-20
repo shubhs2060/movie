@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+
   def update_resource(resource, params)
     if resource.encrypted_password.blank? # || params[:password].blank?
       resource.email = params[:email] if params[:email]
@@ -13,5 +14,14 @@ class RegistrationsController < Devise::RegistrationsController
     else
       resource.update_with_password(params)
     end
+  end
+  private
+
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :image, :country)
+  end
+
+  def account_update_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :image, :country)
   end
 end

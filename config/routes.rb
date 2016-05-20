@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
+  resources :newsletters
+  resources :categories
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 devise_for :users, class_name: 'FormUser', :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
+
  resources :movies do
     resources :reviews, except: [:show, :index]
+    resources :videos
   end
+  
+  get    'top'   => 'movies#top_movies'
+  get    'games'   => 'movies#games'
+#resources :videos, only: [:index, :new, :create]
 
   root 'movies#index'
   devise_scope :user do

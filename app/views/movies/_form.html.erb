@@ -12,30 +12,42 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :title %><br />
     <%= f.text_field :title %>
-  </div>
+  </div><br>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :description%><br />
     <%= f.text_area :description %>
-  </div>
+  </div><br>
   <div class="field">
-    <%= f.label :movie_length %><br>
+    <%= f.label :movie_length_in_hours %><br />
     <%= f.text_field :movie_length %>
-  </div>
+  </div><br>
   <div class="field">
-    <%= f.label :director %><br>
+    <%= f.label :director %><br />
     <%= f.text_field :director %>
-  </div>
+  </div><br>
   <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.text_field :rating %>
-  </div>
+    <%= f.label :censor_rated %><br />
+    <%= f.radio_button :rating, 'U (Unrestricted Public Exhibition)' %> U (Unrestricted Public Exhibition)<br />
+    <%= f.radio_button :rating, 'U/A (Parental Guidance for children below the age of 12 years)' %> U/A (Parental Guidance for children below the age of 12 years)<br />
+    <%= f.radio_button :rating, 'A (Restricted to adults)' %> A (Restricted to adults)<br />
+    <%= f.radio_button :rating, 'S (Restricted to any special class of persons)' %> S (Restricted to any special class of persons)
+  </div><br />
   <div class="field">
-    <%= f.label :image %><br>
+    <%= f.label :image %><br />
     <%= f.file_field :image %>
-  </div>
+  </div><br />
+  <div class="field">
+  <%= f.label "Category of Movie" %><br />
+  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div><br />
+  <% end %>
+</div>
   <div class="actions">
     <%= f.submit %>
-  </div>
+  </div><br />
 <% end %>

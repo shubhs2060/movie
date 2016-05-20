@@ -23,6 +23,11 @@ gem "omniauth-oauth2", "~> 1.0.2"
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'ransack'
+gem 'country_select'
+gem 'gmail'
+gem 'yt', '~> 0.13.7'
+#gem 'bootstrap-sass', '~> 3.3.0.1'
+gem 'autoprefixer-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,7 +37,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_admin'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'rails-observers'
+gem 'shareable'
 
+group :production do
+	gem 'pg'
+end
 # Use Unicorn as the app server
 # gem 'unicorn'
 
