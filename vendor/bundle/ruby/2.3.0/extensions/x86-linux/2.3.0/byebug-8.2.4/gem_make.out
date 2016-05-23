@@ -1,0 +1,19 @@
+current directory: /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/gems/byebug-8.2.4/ext/byebug
+/home/re-15/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20160523-30614-12p8a66.rb extconf.rb
+creating Makefile
+
+current directory: /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/gems/byebug-8.2.4/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/gems/byebug-8.2.4/ext/byebug
+make "DESTDIR="
+compiling byebug.c
+compiling context.c
+compiling breakpoint.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/gems/byebug-8.2.4/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20160523-30614-pqkoew/byebug

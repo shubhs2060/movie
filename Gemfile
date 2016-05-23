@@ -26,6 +26,8 @@ gem 'ransack'
 gem 'country_select'
 gem 'gmail'
 gem 'yt', '~> 0.13.7'
+#gem 'unicorn-worker-killer'
+
 #gem 'bootstrap-sass', '~> 3.3.0.1'
 gem 'autoprefixer-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

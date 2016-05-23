@@ -7,6 +7,8 @@
           <li data-target="#myCarousel" data-slide-to="1"></li>
           <li data-target="#myCarousel" data-slide-to="2"></li>
           <li data-target="#myCarousel" data-slide-to="3"></li>
+          <li data-target="#myCarousel" data-slide-to="4"></li>
+
         </ol>
 
         <!-- Wrapper for slides -->
@@ -33,12 +35,22 @@
           </div>
 
           <div class="item">
+            <img src="r.gif" style="width:1000px;height:400px;">
+            <div class="carousel-caption">
+              <h3>Subscribe</h3>
+              <p><%= link_to "Subscribe for latest updates", new_newsletter_path, class: "btn btn-warning btn-lg" %></p>
+            </div>
+          </div>
+
+          <div class="item">
             <img src="br.gif" style="width:1000px;height:400px;">
             <div class="carousel-caption">
               <p><%= link_to "Log In To Write A Review", new_user_session_path, class: "btn btn-danger btn-lg" %></p>
 
             </div>
           </div>
+
+          
 
           <div class="item">
             <img src="im.gif" style="width:1000px;height:400px;">
@@ -47,6 +59,7 @@
               <p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
             </div>
           </div>
+          
 
           <div class="item">
             <img src="bm.gif" style="width:1000px;height:400px;">

@@ -1,0 +1,7 @@
+<%= render :layout =>'shareable/partials/parent_wrapper' do %>
+  <%= social_buttons.render do %>
+    <% each_button do |button| %>
+      <%= eval button + '_tag' %>
+    <% end %>
+  <% end %>
+<% end %>

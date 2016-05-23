@@ -1,0 +1,14 @@
+var loadLinkedIn; \
+$(function() { \
+  if(linkedinLoaded !== true) { \
+    loadLinkedIn(); \
+    return $(document).on('page:load', loadLinkedIn); \
+  } \
+}); \
+loadLinkedIn = function() { \
+  delete IN; \
+  $.getScript('//platform.linkedin.com/in.js', function() {linkedinLoaded = true;}); \
+  return { \
+    lang: 'en_US' \
+  }; \
+};

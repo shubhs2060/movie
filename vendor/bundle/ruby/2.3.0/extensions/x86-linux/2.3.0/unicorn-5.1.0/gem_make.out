@@ -1,0 +1,26 @@
+current directory: /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/gems/unicorn-5.1.0/ext/unicorn_http
+/home/re-15/.rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20160523-30614-1ghb87m.rb extconf.rb
+checking for SIZEOF_OFF_T in ruby.h... yes
+checking for SIZEOF_SIZE_T in ruby.h... yes
+checking for SIZEOF_LONG in ruby.h... yes
+checking for rb_str_set_len() in ruby.h... yes
+checking for rb_hash_clear() in ruby.h... yes
+checking for gmtime_r() in time.h... yes
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/extensions/x86-linux/2.3.0/unicorn-5.1.0/mkmf.log
+
+current directory: /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/gems/unicorn-5.1.0/ext/unicorn_http
+make "DESTDIR=" clean
+
+current directory: /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/gems/unicorn-5.1.0/ext/unicorn_http
+make "DESTDIR="
+compiling unicorn_http.c
+compiling httpdate.c
+linking shared-object unicorn_http.so
+
+current directory: /home/re-15/backup/Downloads/movie_video/vendor/bundle/ruby/2.3.0/gems/unicorn-5.1.0/ext/unicorn_http
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unicorn_http.so ./.gem.20160523-30614-7xvntd
