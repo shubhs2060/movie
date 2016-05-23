@@ -226,6 +226,8 @@ GEM
     shareable (1.1.4)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    sitemap_generator (5.1.0)
+      builder
     sort_alphabetical (1.0.2)
       unicode_utils (>= 1.2.2)
     spring (1.7.1)
@@ -285,6 +287,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shareable
+  sitemap_generator
   spring
   therubyracer
   turbolinks

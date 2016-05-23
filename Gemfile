@@ -26,6 +26,7 @@ gem 'ransack'
 gem 'country_select'
 gem 'gmail'
 gem 'yt', '~> 0.13.7'
+gem 'sitemap_generator'
 #gem 'unicorn-worker-killer'
 
 #gem 'bootstrap-sass', '~> 3.3.0.1'
