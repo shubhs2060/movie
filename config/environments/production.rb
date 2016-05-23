@@ -13,6 +13,7 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
@@ -50,7 +51,20 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
+ config.assets.raise_runtime_errors = true
 
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+     address: "smtp.gmail.com",
+     port: 587,
+     domain: "localhost:3000",
+     authentication: "plain",
+     enable_starttls_auto: true,
+     user_name: "userre40@gmail.com",
+     password: "rubyeffect",
+     openssl_verify_mode: 'none'
+    }
+    config.action_mailer.default_url_options = {host: "localhost:3000"}
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
