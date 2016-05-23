@@ -61,7 +61,7 @@ Rails.application.configure do
      authentication: "plain",
      enable_starttls_auto: true,
      user_name: "userre40@gmail.com",
-     password: "rubyeffect",
+     password: "bluefire",
      openssl_verify_mode: 'none'
     }
     config.action_mailer.default_url_options = {host: "localhost:3000"}
